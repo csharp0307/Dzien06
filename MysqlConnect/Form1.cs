@@ -52,9 +52,34 @@ namespace MysqlConnect
             if (!isOpen)
                 return;
 
+            lvGrid.Items.Clear();
+            lvGrid.Columns.Clear();
+
             try
             {
                 MySqlCommand cmd = new MySqlCommand(tbSql.Text, conn);
+                using (MySqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    // definicja kolumn w obiekcie ListView
+                    for (int i = 0; i < rdr.FieldCount; i++)
+                    {
+                        lvGrid.Columns.Add(rdr.GetName(i));
+                    }
+
+                    string[] arr = new string[rdr.FieldCount];
+                    while (rdr.Read())
+                    {                        
+                        for (int i = 0; i < rdr.FieldCount; i++)
+                        {
+                            if (rdr.IsDBNull(i))
+                                arr[i] = "(NULL)";
+                            else
+                                arr[i] = rdr.GetString(i);
+                        }
+                        lvGrid.Items.Add(new ListViewItem(arr));
+                    }
+
+                }
             }
             catch (Exception exc)
             {
