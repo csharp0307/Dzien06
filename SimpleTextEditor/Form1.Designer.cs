@@ -43,6 +43,7 @@ namespace SimpleTextEditor
             this.tsFilename = new System.Windows.Forms.ToolStripLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.tsModified = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,8 @@ namespace SimpleTextEditor
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsFilename});
+            this.tsFilename,
+            this.tsModified});
             this.toolStrip1.Location = new System.Drawing.Point(0, 425);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -122,6 +124,7 @@ namespace SimpleTextEditor
             this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
             this.zakończToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zakończToolStripMenuItem.Text = "Zakończ";
+            this.zakończToolStripMenuItem.Click += new System.EventHandler(this.zakończToolStripMenuItem_Click);
             // 
             // richTextBox
             // 
@@ -142,6 +145,7 @@ namespace SimpleTextEditor
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "&Nowy";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // tsFilename
             // 
@@ -158,6 +162,12 @@ namespace SimpleTextEditor
             // 
             this.saveFileDialog.Filter = "Pliki TXT|*.txt";
             // 
+            // tsModified
+            // 
+            this.tsModified.AutoSize = false;
+            this.tsModified.Name = "tsModified";
+            this.tsModified.Size = new System.Drawing.Size(100, 22);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,6 +179,7 @@ namespace SimpleTextEditor
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Text Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -194,6 +205,7 @@ namespace SimpleTextEditor
         private System.Windows.Forms.ToolStripLabel tsFilename;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripLabel tsModified;
     }
 }
 

@@ -20,10 +20,15 @@ namespace SimpleTextEditor
 
         private void mnuOpen_Click(object sender, EventArgs e)
         {
-            if  (openFileDialog.ShowDialog()==DialogResult.OK)
+
+            bool? result = CheckModifications();
+            if (result==null || (bool)result)
             {
-                // załadowanie do edytora
-                LoadToEditor(openFileDialog.FileName);
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // załadowanie do edytora
+                    LoadToEditor(openFileDialog.FileName);
+                }
             }
         }
 
@@ -51,6 +56,7 @@ namespace SimpleTextEditor
             {
                 File.WriteAllText(fileName, richTextBox.Text);
                 isModified = false;
+                tsModified.Text = "";
             }
             catch (IOException exc)
             {
@@ -61,7 +67,10 @@ namespace SimpleTextEditor
 
         private void mnuSave_Click(object sender, EventArgs e)
         {
-            SaveToFile(currentFileName);
+            if (currentFileName == null)
+                mnuSaveAs_Click(sender, e);
+            else
+                SaveToFile(currentFileName);
         }
 
         private void mnuSaveAs_Click(object sender, EventArgs e)
@@ -78,6 +87,48 @@ namespace SimpleTextEditor
         private void richTextBox_TextChanged(object sender, EventArgs e)
         {
             isModified = true;
+            tsModified.Text = "MOD";
+        }
+
+        private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            bool? result = CheckModifications();
+            if (result!=null && (bool)!result)
+                e.Cancel = true;
+        }
+
+        /// <summary>
+        /// Sprawdza czy istniejacy dokumenty jest zmodyfikowany
+        /// </summary>
+        /// <returns>
+        /// NULL - brak modyfikacji
+        /// TRUE - kontynuuj
+        /// FALSE - wstrzymaj operacje
+        /// </returns>
+        private Boolean? CheckModifications()
+        {
+            if (!isModified) return null;
+            DialogResult result = MessageBox.Show("Istnieją niezapisane dane. Czy kontynuować?", "Ostrzeżenie",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            return result == DialogResult.Yes;
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            bool? result = CheckModifications();
+            if (result == null || (bool)result)
+            {
+                richTextBox.Text = String.Empty;
+                richTextBox.Enabled = true;
+                mnuSave.Enabled = true;
+                mnuSaveAs.Enabled = true;
+                tsFilename.Text = "Nowy dokument";
+            }
         }
     }
 }
