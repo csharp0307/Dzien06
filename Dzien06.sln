@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTextEditor", "SimpleT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLParser", "XMLParser\XMLParser.csproj", "{BD70FDDA-4B32-4DFF-8532-3D057B8ED766}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser", "JsonParser\JsonParser.csproj", "{A0A99152-9774-4678-9201-29722276E44D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BD70FDDA-4B32-4DFF-8532-3D057B8ED766}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD70FDDA-4B32-4DFF-8532-3D057B8ED766}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD70FDDA-4B32-4DFF-8532-3D057B8ED766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A99152-9774-4678-9201-29722276E44D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A99152-9774-4678-9201-29722276E44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A99152-9774-4678-9201-29722276E44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A99152-9774-4678-9201-29722276E44D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
