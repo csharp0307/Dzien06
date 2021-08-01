@@ -1,0 +1,7 @@
+<?xml version = "1.0"?>
+<persons>
+  <person name="Jan" lname="Kowalski" phone="567333111" />
+  <person name="Adam" lname="Nowak" phone="601444333" />
+  <person name="Agnieszka" lname="Majewska" phone="765111222" />
+  <person name="Zenek" lname="Martyniuk" phone="606111222" />
+</persons>
